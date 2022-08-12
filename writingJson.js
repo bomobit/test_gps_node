@@ -1,47 +1,42 @@
 const fs = require("fs");
-const equationResults = require("./tracklogResults")
-const readJson = require("./readInJson");
-//const getJsonName = require("./startIt");
-
-//let basicJson = equationResults.finalJson;
-let finalResultsArray = [];
+const { extentArray } = require("./readInJson");
+const finalResultsArray = [];
 let finalObject = {};
-/*var alerts = [ 
-    {num : 1, app:'helloworld',message:'message'},
-    {num : 2, app:'helloagain',message:'another message'} 
-*/
-const makingFinalJson = async () => {
-    let calcedDistances = await equationResults.distanceEquation();
-    let calcedBearings = await equationResults.bearingEquation();
-    const basicJson = await readJson.makingJson();
-for(let i = 0; i < basicJson.length; i++){
-    finalResultsArray.push({
-        fromGPSP: {
-            lat: basicJson[i].GPSP.lat,
-            lon: basicJson[i].GPSP.lon,
-        },
-        distance: calcedDistances[i],
-        bearings: calcedBearings[i]
-    })
-}
+
+const makingFinalJson = async (datatypes) => {
+
+    const unitOfMeasure = await datatypes.calculation; 
+    
+    for(let i = 0; i < unitOfMeasure.length; i++){
+        for(let j = 0; j < unitOfMeasure[i].length; j++){
+            console.log(unitOfMeasure[i][j]);
+        }
+    }
+
+    for(let i = 0; i < extentArray.length; i++){
+        finalResultsArray.push({
+            fromGPSP: {
+                lat: extentArray[i].GPSP.lat,
+                lon: extentArray[i].GPSP.lon,
+            },
+            distance: unitOfMeasure,
+            bearings: unitOfMeasure
+        })
+    }
 
     finalObject = {
         output: finalResultsArray
     }
-
-    return finalObject;
-
+    return finalObject; 
 }
 
-const finishUpJson = async (paramFunc) => {
+/*const finishUpJson = async (paramFunc) => {
     let data = JSON.stringify(paramFunc, null, 2);
    // let outputJson = await getJsonName.askIt().then(result => { console.log(result) })
     fs.writeFileSync('./infos/results.json', data, (err) => {
         if (err) throw err;
     console.log('Data written to file');
     });
- }
+ } */
 
- console.log('This is after the write call');
-
-module.exports = ({makingFinalJson, finishUpJson});
+module.exports = ({makingFinalJson});

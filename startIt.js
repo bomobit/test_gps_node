@@ -5,10 +5,11 @@ const rl = rlp.createInterface({
   output: process.stdout
 });
 
-const askIt = async () => {
+const askIt = () => {
   return new Promise(resolve => {
     rl.question('Enter input: ', input => resolve(input));
   });
 }
+
 
 module.exports = { askIt }
