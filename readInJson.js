@@ -1,8 +1,9 @@
 const fs = require("fs");
 const { askIt } = require("./startIt")
 let arrayOfJson = [];
-const extentArray = [];
-
+let expandArray = [];
+let modObj = {};
+let extraObj = {};
 
 const makingJson = async () => {    
   const inputJson = await askIt().then(result => { return result })
@@ -13,15 +14,18 @@ const makingJson = async () => {
     console.log(err);
     return;
   }
-  const modObj = arrayOfJson.input.map(item => {
+  modObj = arrayOfJson.input.map(item => {
     for (let key in item) {
       if(typeof item[key] === 'GPSP') {
         item[key] = JSON.parse(item[key])
       }
-      extentArray.push(item);
+      expandArray.push(item)
+      return item;
     }
-    return item;
   })
+  
+  jsonObj = Object.assign(modObj);
   return modObj;  
 }
-module.exports = ({ makingJson, extentArray })
+
+module.exports = ({ makingJson, expandArray })
