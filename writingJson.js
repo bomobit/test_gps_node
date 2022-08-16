@@ -38,7 +38,7 @@ const finishUpJson = async (paramData) => {
     try {
       fs.writeFileSync('./infos/' + outputJson + '.json', paramData)
     }catch(err){
-        console.log("Not valid file name for JSON!", err);
+        console.log("Not valid file name for JSON or not valid output data!", err);
         return;
     }
     process.exit(1)
