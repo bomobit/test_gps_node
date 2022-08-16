@@ -5,7 +5,8 @@ const { dataType } = require("./interfaceInit");
 const { metricEquation, angloSaxonEquation } = require("./tracklogResults");
 
 /* itt kerül összefűzésre az, hogy a megfelelő osztály - interface típus hívódjon meg
-    csak felcserélve működik, de a típus eldöntése után, azzal a módszerrel számítódiknak az értékek
+    csak felcserélve működik (tehát először nem az input és output JSON-ok kerülnek megadásra), 
+    de a típus eldöntése után, azzal a módszerrel számítódiknak az értékek
     amely kiválasztásra került
     itt az átalakított JSON file függvény importját és a számításokért felelős függvények importját kapja értékül 
     a dataType objektum calculation paramétere annak fényében hogy az inputon milyen értéket kapott
