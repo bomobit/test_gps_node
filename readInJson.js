@@ -29,7 +29,6 @@ let modObj = {};
       }
     })
 
-    jsonObj = Object.assign(modObj);
     return modObj;
   }
   module.exports = ({ makingJson, expandArray })
